@@ -4,11 +4,11 @@
 
 	mvn versions:set -DnewVersion=<version>
 	mvn versions:commit
-	svn commit -m "Incrementing version for release"
+	git commit pom.xml -m "Incrementing version for release"
 	mvn scm:tag -Dtag=<name>
 	mvn versions:set -DnewVersion=<version>
 	mvn versions:commit
-	svn commit -m "Incrementing version"
+	git commit pom.xml -m "Incrementing version"
 
 Example:
 
