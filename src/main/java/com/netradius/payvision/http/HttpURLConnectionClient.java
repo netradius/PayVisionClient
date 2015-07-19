@@ -23,6 +23,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * A simple HTTP client used to send POST requests. This class uses HttpURLConnection internally.
@@ -42,7 +43,7 @@ public class HttpURLConnectionClient implements HttpClient {
 	/**
 	 * Creates a new HTTP client.
 	 *
-	 * @param username the username
+	 * @param username the usernameN
 	 * @param password the password
 	 */
 	public HttpURLConnectionClient(String username, String password) {
@@ -207,7 +208,7 @@ public class HttpURLConnectionClient implements HttpClient {
 	}
 
 	@SuppressWarnings("unchecked")
-	private String mapToQueryParams(HashMap<String, Object> params) {
+	private String mapToQueryParams(Map<String, Object> params) {
 		DecimalFormat fmt = new DecimalFormat("0.00");
 		QueryStringBuilder qb = new QueryStringBuilder()
 				.add("username", username)
@@ -284,7 +285,7 @@ public class HttpURLConnectionClient implements HttpClient {
 			conn = setup(url);
 			conn.setDoOutput(true);
 
-			HashMap<String, Object> params = mapper.convertValue(requestObject, HashMap.class);
+			TreeMap<String, Object> params = mapper.convertValue(requestObject, TreeMap.class);
 			String qString = mapToQueryParams(params);
 			if (log.isDebugEnabled()) {
 				logRequest(conn, qString);
