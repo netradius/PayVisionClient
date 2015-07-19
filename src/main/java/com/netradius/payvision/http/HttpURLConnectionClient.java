@@ -14,12 +14,10 @@ import com.netradius.payvision.util.StringUtils;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -49,6 +47,12 @@ public class HttpURLConnectionClient implements HttpClient {
 	 */
 	public HttpURLConnectionClient(String username, String password) {
 		log = new LogFilter(LoggerFactory.getLogger(getClass()), password);
+		try {
+			String encoded = URLEncoder.encode(password, "UTF-8");
+			if (!password.equals(encoded)) {
+				log.addFilteredValue(encoded);
+			}
+		} catch (UnsupportedEncodingException x) { /* do nothing */ }
 		authorization = username + ":" + password;
 		authorization = "Basic " + DatatypeConverter.printBase64Binary(authorization.getBytes(Charset.forName("UTF-8")));
 		this.username = username;

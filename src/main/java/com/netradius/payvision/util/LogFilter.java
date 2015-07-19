@@ -2,6 +2,9 @@ package com.netradius.payvision.util;
 
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,11 +17,12 @@ public class LogFilter {
 	protected static final Pattern ccPattern = Pattern.compile("([0-9]{12,19})");
 
 	protected Logger log;
-	protected String[] filteredValues;
+	protected List<String> filteredValues;
 
 	public LogFilter(Logger log, String ... filteredValues) {
 		this.log = log;
-		this.filteredValues = filteredValues;
+		this.filteredValues = new ArrayList<>(filteredValues.length + 1);
+		this.filteredValues.addAll(Arrays.asList(filteredValues));
 	}
 
 	protected String lastFourDigits(String accountNumber) {
@@ -38,10 +42,8 @@ public class LogFilter {
 		if (s == null || s.length() == 0) {
 			return s;
 		}
-		if (filteredValues != null && filteredValues.length > 0) {
-			for (String value : filteredValues) {
-				s = s.replace(value, "<filtered>");
-			}
+		for (String value : filteredValues) {
+			s = s.replace(value, "<filtered>");
 		}
 		Matcher m = ccPattern.matcher(s);
 		while (m.find()) {
@@ -57,6 +59,10 @@ public class LogFilter {
 			m = ccPattern.matcher(s);
 		}
 		return s;
+	}
+
+	public void addFilteredValue(String value) {
+		this.filteredValues.add(value);
 	}
 
 	public void trace(String s) {
