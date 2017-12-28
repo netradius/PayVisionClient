@@ -1,10 +1,18 @@
 package com.netradius.payvision.request;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
+ * Holds the Payvision Validate Request data.
+ *
  * @author Abhinav Nahar
+ * @author Abhijeet Kale
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -12,14 +20,14 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class PayvisionValidateRequest extends PayvisionRequest<PayvisionValidateRequest> {
 
-	@Setter(AccessLevel.NONE)
-	private TransactionType type = TransactionType.UPDATE;
+  @Setter(AccessLevel.NONE)
+  private TransactionType type = TransactionType.VALIDATE;
 
-	private CreditCard creditCard;
+  private CreditCard creditCard;
 
-	private BillingInfo billingInfo;
+  private BillingInfo billingInfo;
 
-	private OrderInfo orderInfo;
+  private OrderInfo orderInfo;
 
-	private ShippingInfo shippingInfo;
+  private ShippingInfo shippingInfo;
 }

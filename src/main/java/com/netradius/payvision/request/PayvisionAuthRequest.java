@@ -1,11 +1,17 @@
 package com.netradius.payvision.request;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 
 /**
+ * Holds the Payvision Auth request data.
+ *
  * @author Abhinav Nahar
  */
 @Data
@@ -14,22 +20,22 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public class PayvisionAuthRequest extends PayvisionRequest<PayvisionAuthRequest> {
 
-	private BigDecimal amount;
+  private BigDecimal amount;
 
-	private String currency;  //The transaction currency. Format: ISO 4217
+  private String currency;  //The transaction currency. Format: ISO 4217
 
-	@Setter(AccessLevel.NONE)
-	private TransactionType type = TransactionType.AUTH;
+  @Setter(AccessLevel.NONE)
+  private TransactionType type = TransactionType.AUTH;
 
-	private CreditCard creditCard;
+  private CreditCard creditCard;
 
-	private BillingInfo billingInfo;
+  private BillingInfo billingInfo;
 
-	private OrderInfo orderInfo;
+  private OrderInfo orderInfo;
 
-	private ShippingInfo shippingInfo;
+  private ShippingInfo shippingInfo;
 
-	private PaymentDescriptor paymentDescriptor;
+  private PaymentDescriptor paymentDescriptor;
 
-	private PaymentProcessorInfo paymentProcessorInfo;
+  private PaymentProcessorInfo paymentProcessorInfo;
 }

@@ -11,29 +11,32 @@ import com.netradius.payvision.response.ResponseContentType;
 import java.io.IOException;
 
 /**
- *  @author Abhinav Nahar
+ * Wrapper for making Http calls to Payvision.
+ *
+ * @author Abhinav Nahar
  */
 public class PayvisionClient {
 
-	protected HttpClient httpClient;
-	protected String transactUrl = "https://secure.nmi.com/api/transact.php";
-	protected String queryUrl = "https://secure.nmi.com/api/query.php";
+  protected HttpClient httpClient;
+  protected String transactUrl = "https://secure.nmi.com/api/transact.php";
+  protected String queryUrl = "https://secure.nmi.com/api/query.php";
 
-	public PayvisionClient(String username, String password) {
-		this.httpClient = new HttpURLConnectionClient(username, password);
-	}
+  public PayvisionClient(String username, String password) {
+    httpClient = new HttpURLConnectionClient(username, password);
+  }
 
-	public PayvisionClient(String transactUrl, String queryUrl, String username, String password) {
-		this(username, password);
-		this.transactUrl = transactUrl;
-		this.queryUrl = queryUrl;
-	}
+  public PayvisionClient(String transactUrl, String queryUrl, String username, String password) {
+    this(username, password);
+    this.transactUrl = transactUrl;
+    this.queryUrl = queryUrl;
+  }
 
-	public PayvisionPaymentResponse process(PayvisionRequest p) throws IOException {
-		return httpClient.post(transactUrl, PayvisionPaymentResponse.class, p, ResponseContentType.JSON);
-	}
+  public PayvisionPaymentResponse process(PayvisionRequest p) throws IOException {
+    return httpClient.post(transactUrl, PayvisionPaymentResponse.class, p,
+        ResponseContentType.JSON);
+  }
 
-	public PayvisionQueryResponse query(PayvisionQueryRequest p) throws IOException {
-		return httpClient.post(queryUrl, PayvisionQueryResponse.class, p, ResponseContentType.XML);
-	}
+  public PayvisionQueryResponse query(PayvisionQueryRequest p) throws IOException {
+    return httpClient.post(queryUrl, PayvisionQueryResponse.class, p, ResponseContentType.XML);
+  }
 }

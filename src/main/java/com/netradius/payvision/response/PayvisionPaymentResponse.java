@@ -18,52 +18,52 @@ import java.io.Serializable;
 @Data
 public class PayvisionPaymentResponse implements Serializable {
 
-	@JsonProperty("response")
-	private String response;
+  @JsonProperty("response")
+  private String response;
 
-	@JsonProperty("responsetext")
-	private String responseText;
+  @JsonProperty("responsetext")
+  private String responseText;
 
-	@JsonProperty("authcode")
-	private String authCode;
+  @JsonProperty("authcode")
+  private String authCode;
 
-	@JsonProperty("transactionid")
-	private String transactionId;
+  @JsonProperty("transactionid")
+  private String transactionId;
 
-	@JsonProperty("avsresponse")
-	private String avsResponse;  //TODO
+  @JsonProperty("avsresponse")
+  private String avsResponse;  //TODO
 
-	@JsonProperty("cvvresponse")
-	private String cvvResponse;  //TODO
+  @JsonProperty("cvvresponse")
+  private String cvvResponse;  //TODO
 
-	@JsonProperty("orderid")
-	private String orderId;
+  @JsonProperty("orderid")
+  private String orderId;
 
-	@JsonProperty(value = "response_code")
-	private String responseCode;
+  @JsonProperty(value = "response_code")
+  private String responseCode;
 
-	public boolean isApproved() {
-		return "1".equals(response);
-	}
+  public boolean isApproved() {
+    return "1".equals(response);
+  }
 
-	public boolean isDeclined() {
-		return "2".equals(response);
-	}
+  public boolean isDeclined() {
+    return "2".equals(response);
+  }
 
-	public boolean isError() {
-		return "3".equals(response);
-	}
+  public boolean isError() {
+    return "3".equals(response);
+  }
 
-	public PayvisionResponseType getResponseType() {
-		return response != null ? PayvisionResponseType.getByValue(response) : null;
-	}
+  public PayvisionResponseType getResponseType() {
+    return response != null ? PayvisionResponseType.getByValue(response) : null;
+  }
 
-	public PayvisionResponseCodeType getResponseCodeType() {
-		return responseCode != null ? PayvisionResponseCodeType.getByValue(responseCode) : null;
-	}
+  public PayvisionResponseCodeType getResponseCodeType() {
+    return responseCode != null ? PayvisionResponseCodeType.getByValue(responseCode) : null;
+  }
 
-	public PayvisionCvvResponseType getCvvResponseCode() {
-		return cvvResponse != null ? PayvisionCvvResponseType.getByValue(cvvResponse) : null;
-	}
+  public PayvisionCvvResponseType getCvvResponseCode() {
+    return cvvResponse != null ? PayvisionCvvResponseType.getByValue(cvvResponse) : null;
+  }
 
 }

@@ -7,6 +7,8 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
+ * Holds the Credit Card details.
+ *
  * @author Abhinav Nahar
  */
 @Data
@@ -15,10 +17,10 @@ import lombok.experimental.Accessors;
 @ToString(callSuper = true)
 public class CreditCard extends PaymentType {
 
-	private String ccnumber;
+  private String ccnumber;
 
-	@JsonProperty("ccexp")
-	private String expirationDate; //Date format MMYY
+  @JsonProperty("ccexp")
+  private String expirationDate; //Date format MMYY
 
-	private String cvv;
+  private String cvv;
 }
