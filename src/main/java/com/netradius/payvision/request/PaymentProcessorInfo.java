@@ -5,15 +5,17 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
+ * Holds the Payment Processor Information.
+ *
  * @author Abhinav Nahar
  */
 @Data
 @Accessors(chain = true)
 public class PaymentProcessorInfo {
 
-	@JsonProperty("processor_id")
-	private String processorId;
+  @JsonProperty("processor_id")
+  private String processorId;
 
-	@JsonProperty("dup_seconds")
-	private Integer dupSeconds;
+  @JsonProperty("dup_seconds")
+  private Integer dupSeconds;
 }

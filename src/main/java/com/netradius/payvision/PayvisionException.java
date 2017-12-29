@@ -9,14 +9,14 @@ import java.io.IOException;
  */
 public class PayvisionException extends IOException {
 
-	private int httpStatus;
+  private int httpStatus;
 
-	public PayvisionException(int httpStatus, String msg, Throwable t) {
-		super(msg, t);
-		this.httpStatus = httpStatus;
-	}
+  public PayvisionException(int httpStatus, String msg, Throwable t) {
+    super(msg, t);
+    this.httpStatus = httpStatus;
+  }
 
-	public int getHttpStatus() {
-		return httpStatus;
-	}
+  public int getHttpStatus() {
+    return httpStatus;
+  }
 }
